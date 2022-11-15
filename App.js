@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, Switch, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Switch, TouchableOpacity, Button, Image } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 
 const lowerCaseSet = "abcdefghijklmnopqrstuvwxyz";
 const upperCaseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numberSet = "0123456789";
-const symbolSet = "!@#$%^&";
+const symbolSet = "!@#$%^&?~*=:./_+-";
 
 export default function App() {
 
@@ -24,8 +24,7 @@ export default function App() {
   const [password, setPassword] = useState('');
 
   const handleLengthChange = (e) => {
-    console.log('event', e);
-    if(e < 1) {
+    if (e < 1) {
       setLength(12);
     } else {
       setLength(e);
@@ -33,20 +32,16 @@ export default function App() {
   }
 
   const generatePassword = () => {
-    let password = '';
+    let newPassword = '';
     let characterSet = '';
     if (upperCase) { characterSet += upperCaseSet };
     if (lowerCase) { characterSet += lowerCaseSet };
     if (numbers) { characterSet += numberSet };
     if (symbols) { characterSet += symbolSet };
     for (let i = 0; i < length; i++) {
-      password += characterSet.charAt(Math.floor(Math.random() * characterSet.length));
+      newPassword += characterSet.charAt(Math.floor(Math.random() * characterSet.length));
     }
-    setPassword(password);
-  }
-
-  const handleGenerate = () => {
-    generatePassword();
+    setPassword(newPassword);
   }
 
   const copyToClipboard = async () => {
@@ -110,10 +105,10 @@ export default function App() {
           />
         </View>
       </View>
-      <TouchableOpacity onPress={handleGenerate} style={styles.button}>
+      <TouchableOpacity onPress={generatePassword} style={styles.button}>
         <Text style={styles.buttonText}>Generate Password</Text>
       </TouchableOpacity>
-      <Text style={styles.passwordHeader}>New Password:</Text>
+      <Text style={styles.passwordHeader}>New Password: </Text>
       <Text style={styles.password}>{password}</Text>
       <Button title="Copy to Clipboard" onPress={copyToClipboard} />
       <StatusBar style="auto" />
@@ -122,16 +117,17 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F0F7F4',
+    alignItems: 'center',
+  },
   title: {
     fontSize: 70,
     fontWeight: "bold",
-    marginTop: 60,
+    shadow: "2px 22px #000",
+    marginTop: 70,
     lineHeight: 70,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
   },
   inputLabel: {
     fontSize: 30,
@@ -143,6 +139,8 @@ const styles = StyleSheet.create({
     padding: 8,
     minWidth: 100,
     fontSize: 25,
+    backgroundColor: "white",
+    borderRadius: 10,
   },
   length: {
     display: "flex",
@@ -169,18 +167,25 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#7AE582",
-    borderRadius: 5,
+    borderRadius: 10,
     borderWidth: 1,
     borderColor: "#25A18E",
     padding: 10,
-    marginBottom: 30,
+    marginBottom: 20,
   },
   buttonText: {
     fontSize: 30,
   },
   passwordHeader: {
     fontSize: 25,
-    marginBottom: 5,
+    marginBottom: 10,
+  },
+  copyButton: {
+    color: "#7AE582",
+    fontSize: 25,
+    fontWeight: "bold",
+    backgroundColor: 'lightgrey',
+    padding: 5,
   },
   password: {
     fontSize: 40,
