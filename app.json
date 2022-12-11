@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "password-generator",
-    "slug": "password-generator",
+    "slug": "xpass",
+    "owner": "xhillman",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,16 +19,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.xhillman.xpass"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.xhillman.xpass"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "087da813-b81a-4341-b1d8-bb39c065ffdc"
+      }
     }
   }
 }
