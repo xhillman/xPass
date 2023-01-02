@@ -2,7 +2,7 @@
 
 Author: Xavier Hillman
 
-![xPass](./assets/screenshot.jpg)
+![xPass](./assets/screenshot1.jpg)
 
 xPass is a random password generator that can be customized to produce passwords of varying lengths and complexity.
 
