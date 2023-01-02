@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, Switch, TouchableOpacity, Button, Image } from 'react-native';
+import { StyleSheet, TextInput, View, Switch, TouchableOpacity, Button, Image } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
+import { Text } from '@rneui/themed';
 
 const lowerCaseSet = "abcdefghijklmnopqrstuvwxyz";
 const upperCaseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -49,6 +50,7 @@ export default function App() {
   };
 
   return (
+
     <View style={styles.container}>
       <Text style={styles.title}>Random Password Generator</Text>
       <View style={styles.length}>
